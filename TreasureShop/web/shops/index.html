@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>挖宝网</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="css/ext.css"/>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script>
+        jQuery(function () {
+            var $typeRow = jQuery("#type_row");
+            var $goodsRow = jQuery("#goods_row");
+            jQuery.ajax({
+                type: "post",
+                url: "/typeList",
+                dataType: "json",
+                success: function (data) {
+                    jQuery.each(data, function (i, v) {
+                        var li = jQuery("<li class='nav'><a href='JavaScript:void(0)'>" + v + "</a></li>");
+                        $typeRow.append(li);
+                    });
+                }
+            });
+            jQuery.ajax({
+                type: "post",
+                url: "/goodsList",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    jQuery.each(data, function (i, v) {
+                        var card = jQuery("<div class='col-md-4'> <div class='thumbnail'> <img alt='300x300'src='https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/1669409267/TB2I2urBByWBuNkSmFPXXXguVXa_!!1669409267-0-item_pic.jpg_460x460Q90.jpg_.webp'/> <div class='caption'> <h3 style='color: red; font-weight: bold;'>¥ " + v.goodsPrice + "</h3> <p>" + v.goodsName + "</p> <p> <a class='btn btn-primary addcart' href='JavaScript:void(0)' name='" + v.goodsID + "' onclick='shop(" + v.goodsID + ")'>加入购物车</a></p></div></div></div>");
+                        $goodsRow.append(card);
+                    })
+                }
+            });
+        });
+	</script>
+</head>
+<body>
+<div class="container">
+	<div class="row box" style="margin-top: 2rem; margin-bottom: 2rem;">
+		<div class="col-md-3 column">
+			<!-- 修改bootstrap中h1的margin-->
+			<h1 style="color: red; margin: auto;">挖宝网</h1>
+		</div>
+		<div class="col-md-6 column">
+			<form role="form" class="form-inline">
+				<div class="form-group">
+					<input type="text" size="60" class="form-control" id="search" placeholder="搜一下"/>
+					<input type="button" class="btn btn-primary" id="seleBtn" value="搜索"/>
+				</div>
+			</form>
+		</div>
+		<div class="col-md-2 column" align="right">
+			<a id="carthref" href="cart.html"><span class="badge pull-right" id="count">0</span>我的购物车</a>
+		</div>
+		<div class="col-md-1 column" align="right">
+			<a href="#" id="loginhref">登陆</a>/<a href="#" id="reghref">注册</a>
+		</div>
+	</div>
+	<!-- 商品列表 -->
+	<div class="row">
+		<div class="col-md-2 column">
+			<ul class="nav navcolor nav-pills nav-stacked" id="type_row">
+				<li class="active">
+					<a href="#">分类</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-10 column" id="goods_row">
+		</div>
+	</div>
+	<!-- 模态框 -->
+	<div id="modal"></div>
+</div>
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/operation.js"></script>
+<!--将商品传输到后台-->
+<script>
+    function shop(id) {
+        jQuery.ajax({
+            type: "post",
+            url: "/allToShow",
+            data: {
+                id: id
+            },
+            success: function (data) {
+                if (data == 0) {
+                    var count = jQuery("#count");
+                    var text = parseInt(count.text());
+                    count.text(++text);
+                } else {
+                    jQuery("#loginhref").click();
+                }
+            }
+        })
+    }
+</script>
+<!--模糊查询-->
+<script>
+    jQuery("#seleBtn").on("click",function () {
+        jQuery.ajax({
+            type : "post",
+            url : "/seleGoods",
+            dataType : "json",
+            data : {"action": jQuery("#search").val()},
+            success : function (data) {
+                var goodsrow = jQuery("#goods_row");
+                goodsrow.children().remove();
+                jQuery.each(data,function (i, v) {
+                    var card = jQuery("<div class='col-md-4'> <div class='thumbnail'> <img alt='300x300'src='https://g-search2.alicdn.com/img/bao/uploaded/i4/i4/1669409267/TB2I2urBByWBuNkSmFPXXXguVXa_!!1669409267-0-item_pic.jpg_460x460Q90.jpg_.webp'/> <div class='caption'> <h3 style='color: red; font-weight: bold;'>¥ " + v.goodsPrice + "</h3> <p>" + v.goodsName + "</p> <p> <a class='btn btn-primary addcart' href='JavaScript:void(0)' name='" + v.goodsID + "' onclick='shop(" + v.goodsID + ")'>加入购物车</a></p></div></div></div>");
+                    goodsrow.append(card);
+                })
+            }
+        })
+    })
+</script>
+<script>
+    $(function () {
+        $("#loginhref").on("click", function () {
+            $("#modal").load("login.html", function () {
+                $('#loginModal').modal('show');
+            });
+        });
+        $("#reghref").on("click", function () {
+            $("#modal").load("reg.html", function () {
+                $('#regModal').modal('show');
+            });
+        });
+    });
+</script>
+</html>

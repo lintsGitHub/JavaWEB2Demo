@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+       /* window.onload = function (ev) {
+            var checklist = document.querySelectorAll("#div>:checked");
+            checklist.forEach(function (value) {
+                console.log(value.value);
+            })
+        }*/
+       function f() {
+           /*var checklist = document.querySelectorAll("#div>:checked");
+           checklist.forEach(function (value) {
+               console.log(value.value);
+           })*/
+           console.log(document.querySelectorAll("#div>:checked"));
+           /* checkedList.length < 0 ? alert("你都没有选择"): checkedList.forEach(function (value) {
+
+            });*/
+       }
+    </script>
+</head>
+<body>
+<div id="div">
+    <input type="checkbox" value="男" checked>男
+    <input type="checkbox" value="男" checked>男
+    <input type="checkbox" value="男">男
+</div>
+<button onclick="f()"></button>
+</body>
+</html>

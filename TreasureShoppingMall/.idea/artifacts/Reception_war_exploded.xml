@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Reception:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Reception_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Reception/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Reception" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Java的jar包" />
+          <element id="library" level="project" name="sqlite-jdbc-3.7.2 (1)" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

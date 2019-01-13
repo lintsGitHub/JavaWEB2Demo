@@ -1,0 +1,28 @@
+*{
+    padding:  0px;
+    margin: 0px;
+}
+div{
+    /*border: 1px solid black;*/
+}
+#head{
+    height: 50px;
+}
+#pictureMsg{
+    height: 400px;
+}
+#left{
+    width: 15%;
+    float: left;
+    height: 100px;
+}
+#center{
+    width: 54%;
+    float: left;
+    height: 100px;
+}
+#right{
+    width: 30%;
+    float: right;
+    height: 100px;
+}

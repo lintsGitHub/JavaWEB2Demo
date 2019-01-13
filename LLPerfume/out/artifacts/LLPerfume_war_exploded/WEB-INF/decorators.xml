@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<decorators defaultdir="/WEB-INF/Mode">
+    <decorator name="perfume" page="MainMode.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>

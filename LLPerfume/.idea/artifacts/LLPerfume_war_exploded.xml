@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="LLPerfume:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/LLPerfume_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="LLPerfume/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="LLPerfume" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="mssql-jdbc-7.0.0.jre10" />
+          <element id="library" level="project" name="sqlite-jdbc-3.7.2 (1)" />
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="gson-2.8.5" />
+          <element id="library" level="project" name="sitemesh-2.4.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

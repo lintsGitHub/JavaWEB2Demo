@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<decorators defaultdir="/layout">
+    <excludes>
+        <pattern></pattern>
+    </excludes>
+    <decorator name="book" page="book.jsp">
+        <pattern>/jsp/*</pattern>
+    </decorator>
+</decorators>

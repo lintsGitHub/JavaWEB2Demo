@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <head>
+        <title>My Face</title>
+    </head>
+    <!--引入jquery-->
+    <script src="jquery-3.3.1.min.js"></script>
+
+<body>
+<h1>Welcome to myface</h1>
+<img src="image/myface.jpg" alt="秀智" width="350" height="256">
+<p>Hello, my name is 秀智, what is yours?</p>
+<form id="froms">
+    <input type="text" name="name" value="">
+    <select name="type" id="type">
+        <option value="请选择">请选择</option>
+        <option value="大叔">大叔</option>
+        <option value="大婶">大婶</option>
+        <option value="男神">男神</option>
+        <option value="女神">女神</option>
+    </select>
+    <input type="submit" value="提交">
+</form>
+<script>
+    /*
+    * 当表单提交时，我们就执行使用ajax的方法来进行表单的提交，
+    * 为什么使用ajax？（其实我们也可以使用别的技术来，比如 websocket 等等）
+    *   1，为了达到页面无刷新的效果，这样用户就有更好的体验
+    *在写这个小ajax表单提交时我们就遇到了一个问题，就是我们使用ajax提交过去后，本来表单的提交动作也会
+    * 执行，也就是说我们就提交了两次，以解决
+    *
+    * */
+    jQuery("#froms").submit(function () {
+        jQuery.ajax({
+            type: "POST",
+            url: "sele",
+            data: jQuery('#froms').serialize(),
+            success: function (data) {
+                jQuery("#msg").text(data);
+            }
+        });
+        // 我们手动阻止了它的第二次提交的行为
+        event.preventDefault();
+
+    })
+</script>
+<p id="msg"></p>
+</body>
+</html>
+
+<!--
+    论我们为什么不使用jsp来进行功能的完成
+1，jsp太过于繁重
+2，时代的趋势是前端，后台的分离，然而jsp就是一个servlet,它的耦合性太高
+3，jsp 可以写java代码，也可以写HTML代码 ，这样合适？
+4，jsp 在进行页面渲染是相对麻烦
+5，在历史中jsp的bean 是强大，但现在出现了各式各样的框架 比如 spring 等等，远远比jsp那个要强 我们为什么不使用更为强大的第三方框架
+
+-->

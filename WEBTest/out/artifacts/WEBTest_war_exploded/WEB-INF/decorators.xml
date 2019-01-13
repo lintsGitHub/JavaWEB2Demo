@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<decorators  defaultdir="/WEB-INF/Mode">
+    <excludes>
+        <pattern></pattern>
+    </excludes>
+    <decorator name="book" page="Mode.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>
